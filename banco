@@ -1,0 +1,32 @@
+valorSacado = 0
+continuar = True
+while continuar:
+    try:
+        valorSacado = int(input("Qual o valor a ser sacado? "))
+        continuar = False
+    except:
+        print("Digite um valor inteiro")
+
+def processo(valorSacado):
+    if valorSacado%50 == 0:
+        print(f"Serão entregues {int(valorSacado/50)} cédulas de R$50.")
+        return
+    else:
+        cedulasDe50 = valorSacado//50
+        resto = valorSacado%50
+
+    if resto%20 == 0:
+        print(f"Serão entregues {cedulasDe50} cédulas de R$50 e {int(resto/20)} cédulas de R$20.")
+        return
+    else:
+        cedulasDe20 = resto//20
+        resto = resto%20
+
+    if resto%10 == 0:
+        print(f"Serão entregues {cedulasDe50} cédulas de R$50 e {cedulasDe20} cédulas de R$20 e {int(resto/10)} cédulas de R$10.")
+    else:
+        cedulasDe10 = resto//10
+        resto = resto%10
+        print(f"Serão entregues {cedulasDe50} cédulas de R$50 e {cedulasDe20} cédulas de R$20 e {cedulasDe10} cédulas de R$10 e {resto} cédulas de R$1.")
+
+processo(valorSacado)
