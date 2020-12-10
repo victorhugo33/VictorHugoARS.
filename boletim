@@ -3,11 +3,11 @@ def aluno(nome, media, contador):
 
 def notas(numero):
     try:
-        nota = float(input(f"Insira a nota {numero}: "))
+        nota = float(input(f"Insira uma nota {numero}: "))
         if nota <= 10 and nota >= 0:
             return nota
         else:
-            print("Digite um valor entre o e 10")
+            print("Digite uma nota entre 0 e 10")
             return notas(numero)
     except:
         print("Digite um número decimal")
@@ -16,7 +16,7 @@ def notas(numero):
 contador = 1
 ficha = []
 while True:
-    nome = input("\nInsira um nome: ")
+    nome = input("\nInsira um aluno: ")
     nota1 = notas(1)
     nota2 = notas(2)
     media = (nota1 + nota2) / 2
