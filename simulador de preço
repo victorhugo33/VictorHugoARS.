@@ -1,7 +1,33 @@
-preço = float(input("Digite o preço da mercadoria:"))
-desconto = float(input("Digite o percentual de desconto:"))
-valor_do_desconto = preço * desconto / 100
-a_pagar = preço - valor_do_desconto
-print("Um desconto de %5.2f %% em uma mercadoria de R$ %7.2f" % (desconto, preço))
-print("vale R$ %7.2f." % valor_do_desconto)
-print("O valor a pagar é de R$ %7.2f" % a_pagar)
+def precos():
+    try:
+        preco = float(input("Qual o preço do produto? "))
+        return preco
+    except:
+        print("Digite um número decimal")
+        return precos()
+
+def opcoes():
+    opcao = input("Você deseja pagar de qual maneira:\n1- À vista com 50% de desconto\n2- A prazo em 1x no cartão com 10% de desconto\n3- A prazo da loja em 5x com 10% a mais no valor\n4- A prazo da loja em 10X com 50% a mais no valor\n")
+    if opcao in ["1","2","3","4"]:
+        return int(opcao)
+    else:
+        print("Digite uma opção válida")
+        return opcoes()
+
+preco = precos()
+opcao = opcoes()
+
+if opcao == 1:
+    valor = preco-(preco*0.5)
+    print(f"O valor a ser pago para pagamento a vista será de R${valor}")
+elif opcao == 2:
+    valor = preco-(preco*0.1)
+    print(f"O valor a ser pago para pagamento a prazo em 1x no cartão será de R${valor}10")
+elif opcao == 3:
+    valor = preco+(preco*0.1)
+    parcela = preco*0.02
+    print(f"O valor a ser pago para pagamento a prazo da loja em 5x será de R${valor} com cada parcela tendo o valor de R${parcela}")
+else:
+    valor = preco+(preco*0.5)
+    parcela = preco*0.05
+    print(f"O valor a ser pago para pagamento a prazo da loja em 10X será de R${valor} com cada parcela tendo o valor de R${parcela}")
