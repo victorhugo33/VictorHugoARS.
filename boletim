@@ -1,10 +1,47 @@
-ficha = list()
+def aluno(nome, media, contador):
+    return {contador: [nome, media]}
+
+def notas(numero):
+    try:
+        nota = float(input(f"Insira a nota {numero}: "))
+        if nota <= 10 and nota >= 0:
+            return nota
+        else:
+            print("Digite um valor entre o e 10")
+            return notas(numero)
+    except:
+        print("Digite um número decimal")
+        return notas(numero)
+
+contador = 1
+ficha = []
 while True:
-    nome = str(input("Insira um nome: "))
-    nota1 = float(input("Insira a nota 1: "))
-    nota2 = float(input("Insira a nota 2: "))
+    nome = input("\nInsira um nome: ")
+    nota1 = notas(1)
+    nota2 = notas(2)
     media = (nota1 + nota2) / 2
-    ficha.append([nome, [nota1, nota2], media])
-    resposta = str(input("Quer continuar? [S/N]"))
-    if resposta in 'Nn':
+    ficha.append(aluno(nome, media, contador))
+    contador+=1
+    resposta = input("Quer continuar? [S/N] ")
+    if resposta.lower() == 'n':
         break
+
+for aluno in ficha:
+    print(f"\nId: {list(aluno.keys())[0]}")
+    print(f"Nome: {list(aluno.values())[0][0]}")
+    print(f"Média: {list(aluno.values())[0][1]}")
+
+resposta = input("\nDeseja procurar por um aluno em específico? [S/N] ")
+
+if resposta.lower() == 's':
+    identificacao = int(input("Digite o id do aluno a ser pesquisado "))
+    contador = 0
+    for aluno in ficha:
+        if list(aluno.keys())[0] == identificacao:
+            print(f"\nId: {list(aluno.keys())[0]}")
+            print(f"Nome: {list(aluno.values())[0][0]}")
+            print(f"Média: {list(aluno.values())[0][1]}")
+        else:
+            contador +=1
+    if contador == len(ficha):
+        print("O id procurado não foi encontrado")
