@@ -1,0 +1,10 @@
+ficha = list()
+while True:
+    nome = str(input("Insira um nome: "))
+    nota1 = float(input("Insira a nota 1: "))
+    nota2 = float(input("Insira a nota 2: "))
+    media = (nota1 + nota2) / 2
+    ficha.append([nome, [nota1, nota2], media])
+    resposta = str(input("Quer continuar? [S/N]"))
+    if resposta in 'Nn':
+        break
